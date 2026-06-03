@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 760" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff8ee"/>
+      <stop offset="0.42" stop-color="#fff1f2"/>
+      <stop offset="1" stop-color="#e4fbfb"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff8f5f"/>
+      <stop offset="1" stop-color="#f34cc3"/>
+    </linearGradient>
+    <linearGradient id="cool" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5d3fe0"/>
+      <stop offset="1" stop-color="#a394ff"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e5deff"/>
+    </linearGradient>
+    <radialGradient id="cyanGlow" cx="70%" cy="58%" r="52%">
+      <stop offset="0" stop-color="#b8ffff" stop-opacity="0.75"/>
+      <stop offset="0.58" stop-color="#6ee8ed" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#6ee8ed" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pinkGlow" cx="43%" cy="57%" r="52%">
+      <stop offset="0" stop-color="#ffd8ec" stop-opacity="0.78"/>
+      <stop offset="0.66" stop-color="#ff7b54" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#ff7b54" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="shadow" x="-35%" y="-35%" width="170%" height="180%">
+      <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#a63a19" flood-opacity="0.16"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#1b1b1c" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .float-slow { animation: floatSlow 8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .float-med { animation: floatMed 6.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .spin-soft { animation: spinSoft 28s linear infinite; transform-box: fill-box; transform-origin: center; }
+      .trail { animation: trailPulse 5s ease-in-out infinite; }
+      .spark { animation: sparkle 3.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      @keyframes floatSlow {
+        0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+        50% { transform: translateY(-18px) rotate(calc(var(--r, 0deg) + 1.4deg)); }
+      }
+      @keyframes floatMed {
+        0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+        50% { transform: translateY(-26px) rotate(calc(var(--r, 0deg) - 1.6deg)); }
+      }
+      @keyframes spinSoft {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes trailPulse {
+        0%, 100% { opacity: 0.45; }
+        50% { opacity: 0.86; }
+      }
+      @keyframes sparkle {
+        0%, 100% { opacity: 0.25; transform: scale(0.82); }
+        50% { opacity: 1; transform: scale(1.18); }
+      }
+    </style>
+  </defs>
+
+  <rect width="1920" height="760" fill="url(#bg)"/>
+  <rect width="1920" height="760" fill="url(#cyanGlow)"/>
+  <rect width="1920" height="760" fill="url(#pinkGlow)"/>
+
+  <g opacity="0.55" filter="url(#softGlow)">
+    <circle cx="1200" cy="350" r="230" fill="#ffffff"/>
+    <circle cx="1650" cy="575" r="260" fill="#8cf7f3" opacity="0.36"/>
+    <circle cx="390" cy="620" r="270" fill="#ffb5a0" opacity="0.32"/>
+  </g>
+
+  <g class="spin-soft" opacity="0.28">
+    <circle cx="1310" cy="410" r="360" fill="none" stroke="#a63a19" stroke-width="1.6"/>
+    <circle cx="1310" cy="410" r="316" fill="none" stroke="#a63a19" stroke-width="1.2"/>
+    <circle cx="1310" cy="410" r="272" fill="none" stroke="#a63a19" stroke-width="1.1"/>
+    <circle cx="1310" cy="410" r="226" fill="none" stroke="#a63a19" stroke-width="1"/>
+    <circle cx="1310" cy="410" r="178" fill="none" stroke="#a63a19" stroke-width="0.9"/>
+  </g>
+
+  <path class="trail" d="M-90 615 C 335 535, 680 510, 1050 500 S 1660 495, 2020 430" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.72"/>
+  <path class="trail" d="M-80 705 C 380 660, 760 625, 1120 615 S 1670 620, 2020 570" fill="none" stroke="#9ff7fb" stroke-width="20" opacity="0.22"/>
+  <path class="trail" d="M-70 670 C 370 620, 755 584, 1135 578 S 1680 580, 2020 520" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.62"/>
+  <path class="trail" d="M380 462 C 670 430, 910 407, 1160 392 S 1555 378, 1960 386" fill="none" stroke="#ffb5a0" stroke-width="2.2" opacity="0.42"/>
+
+  <g class="float-slow" style="--r: 6deg" filter="url(#shadow)">
+    <path d="M1130 118 C1245 130 1380 145 1500 178 C1398 204 1272 212 1146 205 C1132 177 1127 148 1130 118Z" fill="#ffffff" opacity="0.55"/>
+    <path d="M1100 190 C1225 202 1398 224 1524 258 C1412 288 1240 278 1092 252 C1094 232 1096 210 1100 190Z" fill="#ffffff" opacity="0.48"/>
+    <path d="M1088 282 C1230 292 1395 314 1540 350 C1388 382 1220 365 1068 334 C1074 314 1080 296 1088 282Z" fill="#ffffff" opacity="0.46"/>
+    <path d="M1082 384 C1226 394 1398 421 1534 458 C1372 492 1196 468 1058 430 C1062 412 1070 396 1082 384Z" fill="#ffffff" opacity="0.42"/>
+    <path d="M1094 486 C1228 503 1388 529 1510 566 C1368 595 1218 576 1086 542 C1084 520 1088 502 1094 486Z" fill="#ffffff" opacity="0.4"/>
+    <rect x="1170" y="120" width="250" height="475" rx="122" fill="#ffffff" opacity="0.36"/>
+    <rect x="1192" y="130" width="205" height="452" rx="98" fill="#d7ffff" opacity="0.28"/>
+  </g>
+
+  <g class="float-med" style="--r: -15deg" filter="url(#shadow)">
+    <rect x="386" y="230" width="154" height="218" rx="20" fill="url(#warm)"/>
+    <rect x="410" y="386" width="86" height="4" rx="2" fill="#ffffff" opacity="0.65"/>
+    <rect x="410" y="404" width="108" height="4" rx="2" fill="#ffffff" opacity="0.45"/>
+    <rect x="410" y="422" width="64" height="4" rx="2" fill="#ffffff" opacity="0.35"/>
+  </g>
+
+  <g class="float-slow" style="--r: 17deg" filter="url(#shadow)">
+    <rect x="1395" y="205" width="150" height="210" rx="22" fill="url(#cool)"/>
+    <circle cx="1474" cy="280" r="8" fill="#ffffff" opacity="0.72"/>
+    <rect x="1424" y="336" width="92" height="5" rx="2.5" fill="#ffffff" opacity="0.58"/>
+    <rect x="1424" y="356" width="115" height="5" rx="2.5" fill="#ffffff" opacity="0.42"/>
+    <rect x="1424" y="376" width="80" height="5" rx="2.5" fill="#ffffff" opacity="0.32"/>
+  </g>
+
+  <g class="float-med" style="--r: -29deg" filter="url(#shadow)">
+    <rect x="1108" y="485" width="142" height="178" rx="18" fill="#d9552f"/>
+    <rect x="1152" y="605" width="78" height="5" rx="2.5" fill="#ffffff" opacity="0.6"/>
+    <rect x="1152" y="624" width="100" height="5" rx="2.5" fill="#ffffff" opacity="0.42"/>
+    <rect x="1152" y="643" width="60" height="5" rx="2.5" fill="#ffffff" opacity="0.32"/>
+  </g>
+
+  <g class="float-slow" style="--r: -13deg" filter="url(#shadow)" opacity="0.86">
+    <rect x="1600" y="515" width="206" height="118" rx="22" fill="url(#paper)"/>
+    <path d="M1632 564 H1746 M1640 587 H1764" stroke="#a63a19" stroke-width="4" stroke-linecap="round" opacity="0.22"/>
+  </g>
+
+  <g class="float-med" style="--r: 14deg" filter="url(#shadow)" opacity="0.72">
+    <rect x="512" y="598" width="176" height="102" rx="18" fill="url(#paper)"/>
+    <path d="M548 642 H658 M556 664 H676" stroke="#a63a19" stroke-width="3.5" stroke-linecap="round" opacity="0.18"/>
+  </g>
+
+  <g>
+    <circle class="spark" cx="658" cy="188" r="8" fill="#ffb5a0" opacity="0.55"/>
+    <circle class="spark" cx="718" cy="420" r="4" fill="#ff7b54" opacity="0.65"/>
+    <circle class="spark" cx="1510" cy="310" r="7" fill="#ffffff" opacity="0.7"/>
+    <circle class="spark" cx="1800" cy="548" r="5" fill="#ff7b54" opacity="0.42"/>
+    <circle class="spark" cx="1740" cy="660" r="9" fill="#ffffff" opacity="0.65"/>
+    <circle class="spark" cx="338" cy="610" r="6" fill="#ffffff" opacity="0.72"/>
+    <circle class="spark" cx="118" cy="662" r="10" fill="#ffffff" opacity="0.55"/>
+  </g>
+</svg>

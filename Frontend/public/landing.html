@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LumiBooks | Cinematic Reading Experiences</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#87006a",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#3b002d",
+                        "inverse-primary": "#ffb5a0",
+                        "surface-container": "#f0eded",
+                        "on-primary-container": "#6d1a00",
+                        "outline": "#8b716a",
+                        "on-surface": "#1b1b1c",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-container-high": "#eae7e7",
+                        "tertiary-fixed": "#e5deff",
+                        "inverse-surface": "#303030",
+                        "primary": "#a63a19",
+                        "on-background": "#1b1b1c",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary-fixed-variant": "#862302",
+                        "on-tertiary-fixed": "#1a0063",
+                        "on-tertiary-fixed-variant": "#441cc8",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffaede",
+                        "primary-fixed": "#ffdbd1",
+                        "primary-fixed-dim": "#ffb5a0",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#58423c",
+                        "surface-dim": "#dcd9d9",
+                        "secondary-fixed": "#ffd8ec",
+                        "secondary-container": "#fd4ccb",
+                        "surface-tint": "#a63a19",
+                        "tertiary-container": "#a394ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e5e2e1",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c9bfff",
+                        "on-secondary-container": "#5d0048",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#5d3fe0",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "secondary": "#b1008c",
+                        "on-tertiary-container": "#3600b3",
+                        "on-primary-fixed": "#3b0a00",
+                        "primary-container": "#ff7b54",
+                        "outline-variant": "#dfc0b7",
+                        "surface": "#fcf9f8",
+                        "inverse-on-surface": "#f3f0ef",
+                        "background": "#fcf9f8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1320px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Hanken Grotesk"],
+                        "display-hero": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["42px", {"lineHeight": "1.16", "letterSpacing": "0", "fontWeight": "700"}],
+                        "display-hero": ["62px", {"lineHeight": "1.06", "letterSpacing": "0", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-lg": ["17px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-md": ["28px", {"lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FFF7ED;
+            color: #1b1b1c;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: geometricPrecision;
+        }
+
+        img, canvas, .book-card-premium {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        .aurora-gradient {
+            background: linear-gradient(135deg, #a63a19, #ff7b54, #b1008c, #3600b3);
+            background-size: 300% 300%;
+            animation: gradient-flow 12s ease infinite;
+        }
+        
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+        }
+        
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 30px 60px -12px rgba(166, 58, 25, 0.15),
+                        0 18px 36px -18px rgba(0, 0, 0, 0.1);
+        }
+
+        .float-anim { animation: floating 6s ease-in-out infinite; }
+        .float-anim-delay-1 { animation: floating 6s ease-in-out infinite 1s; }
+        .float-anim-delay-2 { animation: floating 6s ease-in-out infinite 2s; }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mouse-glow::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255, 123, 84, 0.25), transparent 40%);
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .mouse-glow:hover::before { opacity: 1; }
+
+        #particles-canvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .hero-crisp-scene {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            background: #fff7ed;
+        }
+
+        .hero-crisp-scene::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(255,247,237,0.74), rgba(255,247,237,0.28) 42%, rgba(255,247,237,0.06)),
+                radial-gradient(circle at 10% 52%, rgba(255,255,255,0.7), transparent 32rem);
+            z-index: 2;
+        }
+
+        .hero-crisp-scene::after {
+            display: none;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            inset: -1%;
+            width: 102%;
+            height: 102%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 1;
+            transform: translateZ(0);
+            image-rendering: auto;
+            backface-visibility: hidden;
+            animation: hero-image-pan 18s ease-in-out infinite alternate;
+        }
+
+        .hero-sharpener {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            mix-blend-mode: soft-light;
+            opacity: 0.46;
+            background:
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 5px),
+                repeating-linear-gradient(0deg, rgba(27,27,28,0.05) 0 1px, transparent 1px 7px);
+        }
+
+        @keyframes hero-image-pan {
+            0% { transform: translate3d(-0.45%, -0.25%, 0) scale(1.008); }
+            100% { transform: translate3d(0.45%, 0.25%, 0) scale(1.022); }
+        }
+
+        @keyframes hero-trail-pulse {
+            0%, 100% { opacity: 0.62; transform: rotate(-4deg) translateY(0); }
+            50% { opacity: 0.92; transform: rotate(-4deg) translateY(-8px); }
+        }
+
+        .glow-cyan { box-shadow: 0 0 20px rgba(0, 255, 255, 0.08); }
+        .glow-orange { box-shadow: 0 0 20px rgba(166, 58, 25, 0.08); }
+        .glow-purple { box-shadow: 0 0 20px rgba(93, 63, 224, 0.08); }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        #trending-carousel {
+            scroll-behavior: smooth;
+            scroll-padding-inline: 48px;
+        }
+
+        #trending-carousel.is-loading {
+            opacity: 0.64;
+            pointer-events: none;
+        }
+
+        .genre-card:focus-visible,
+        .book-card:focus-visible,
+        .carousel-nav:focus-visible {
+            outline: 3px solid rgba(166, 58, 25, 0.32);
+            outline-offset: 4px;
+        }
+
+        /* Expanding Library System Styles */
+        .library-scene {
+            perspective: 2000px;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .library-scene::before {
+            content: "";
+            position: absolute;
+            width: min(76%, 560px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,123,84,0.2), rgba(177,0,140,0.08) 45%, transparent 70%);
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        .book-card-premium {
+            width: 168px;
+            height: 238px;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 1.1s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.45s ease, filter 0.45s ease;
+            cursor: pointer;
+            border-radius: 4px 12px 12px 4px;
+            box-shadow:
+                0 26px 50px rgba(27,27,28,0.16),
+                inset 0 1px 0 rgba(255,255,255,0.25),
+                inset -14px 0 24px rgba(255,255,255,0.06);
+            background: #a63a19;
+            z-index: 10;
+            will-change: transform;
+        }
+
+        .book-card-premium.floating {
+            animation: idle-float 6.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes idle-float {
+            0% { translate: 0 0; }
+            100% { translate: 0 -9px; }
+        }
+
+        .book-card-premium .cover-design {
+            position: absolute;
+            inset: 0;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: white;
+            border-radius: inherit;
+            overflow: hidden;
+            backface-visibility: hidden;
+            border-left: 2px solid rgba(255,255,255,0.1);
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.14), transparent 38%),
+                repeating-linear-gradient(180deg, transparent 0 46px, rgba(255,255,255,0.05) 46px 47px);
+        }
+
+        .book-card-premium .spine-edge {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 4px 0 0 4px;
+            box-shadow: inset -2px 0 6px rgba(255,255,255,0.16);
+        }
+
+        .book-card-premium:hover {
+            transform: translateZ(44px) translateY(-14px) rotateY(-8deg) !important;
+            box-shadow: 0 42px 80px -22px rgba(166, 58, 25, 0.36);
+            z-index: 50 !important;
+            filter: saturate(1.08) contrast(1.04);
+        }
+
+        .tooltip-premium {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(27, 27, 28, 0.94);
+            backdrop-filter: blur(12px);
+            padding: 10px 16px;
+            border-radius: 12px;
+            color: white;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 60;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .book-card-premium:hover .tooltip-premium {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .book-card-premium.compact {
+            width: 142px;
+            height: 202px;
+        }
+
+        /* Portal Scene & Other animations kept for continuity */
+        .portal-scene {
+            perspective: 1000px;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #3600b3 0%, #1a0063 100%);
+        }
+        .flying-item {
+            position: absolute;
+            color: white;
+            animation: fly-through 4s linear infinite;
+            opacity: 0;
+        }
+        @keyframes fly-through {
+            0% { transform: translateZ(-1000px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateZ(500px) rotate(360deg); opacity: 0; }
+        }
+
+        .shelf-corridor {
+            perspective: 2000px;
+            height: 500px;
+            background: #1b1b1c;
+            overflow: hidden;
+            box-shadow: 0 34px 80px rgba(27, 27, 28, 0.18);
+        }
+        .shelf-row {
+            display: flex;
+            gap: 20px;
+            position: absolute;
+            width: 200%;
+            transition: transform 0.1s linear;
+        }
+        .spine {
+            width: 40px;
+            height: 280px;
+            background: #2a2a2c;
+            border-left: 1px solid #3a3a3c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            padding: 10px;
+            color: #8b716a;
+            font-size: 12px;
+            font-family: 'JetBrains Mono';
+            transition: all 0.3s ease;
+        }
+        .spine:hover {
+            background: #ff7b54;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 123, 84, 0.5);
+            transform: translateZ(20px);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .float-anim, .reveal, .aurora-gradient, .flying-item, .shelf-row, .book-card-premium {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-bg-image {
+                object-position: 58% center;
+            }
+
+            .library-scene {
+                height: 420px;
+                transform: scale(0.86);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .hero-bg-image {
+                object-position: 62% center;
+                opacity: 0.76;
+            }
+
+            nav {
+                width: 94%;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .library-scene {
+                height: 360px;
+                transform: scale(0.72);
+            }
+        }
+    </style>
+</head>
+<body class="selection:bg-primary-container selection:text-white overflow-x-hidden">
+<div class="fixed w-[600px] h-[600px] rounded-full pointer-events-none z-0 opacity-20 blur-[120px] bg-gradient-to-r from-primary via-secondary to-tertiary" id="ambient-cursor" style="top: -300px; left: -300px; transition: transform 0.1s ease-out;"></div>
+<nav class="sticky top-5 z-50 flex items-center justify-between px-7 py-3 w-[91%] mx-auto bg-surface-container-lowest/72 backdrop-blur-2xl rounded-full border border-white/30 shadow-[0_20px_50px_rgba(166,58,25,0.1)]">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-extrabold tracking-tighter text-primary">LumiBooks</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary/40 pb-1 font-label-caps text-label-caps" href="/library" target="_top">Library</a>
+<a class="text-on-surface-variant/80 font-medium hover:text-primary transition-all font-label-caps text-label-caps" href="/trending" target="_top">Trending</a>
+<a class="text-on-surface-variant/80 font-medium hover:text-primary transition-all font-label-caps text-label-caps" href="/categories" target="_top">Categories</a>
+<a class="text-on-surface-variant/80 font-medium hover:text-primary transition-all font-label-caps text-label-caps" href="/community" target="_top">Community</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-on-surface-variant font-medium font-label-caps text-label-caps" href="/sign-in" target="_top">Login</a>
+<a class="bg-primary text-white px-6 py-2 rounded-full font-label-caps text-label-caps shadow-lg hover:shadow-primary/30 transition-shadow" href="/sign-up" target="_top">Get Started</a>
+</div>
+</nav>
+<header class="relative min-h-[82vh] flex items-center pt-16 overflow-hidden">
+<canvas id="particles-canvas"></canvas>
+<div class="hero-crisp-scene parallax-element" data-parallax-speed="0.08" aria-hidden="true">
+<img alt="" class="hero-bg-image" decoding="async" fetchpriority="high" src="/hero-lumibooks-hd.svg"/>
+<div class="hero-sharpener"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+<div class="space-y-7 max-w-2xl reveal active">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-white/50 float-anim">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps text-primary">Next-Gen Digital Library</span>
+</div>
+<h1 class="font-display-hero text-display-hero leading-tight text-on-surface">
+                Discover Worlds <br/>
+<span class="text-transparent bg-clip-text aurora-gradient">Beyond Imagination</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                Experience reading like never before. LumiBooks blends high-fidelity visuals with an immersive AI-powered ecosystem designed for the modern intellectual.
+            </p>
+<div class="flex flex-wrap gap-5 pt-2">
+<button class="px-7 py-3.5 aurora-gradient text-white rounded-full font-headline-md text-body-lg shadow-[0_15px_30px_rgba(166,58,25,0.3)] hover:scale-105 transition-transform" id="start-reading-button">Start Reading</button>
+<button class="px-7 py-3.5 glass-panel border border-white/60 text-on-surface rounded-full font-headline-md text-body-lg flex items-center gap-3 hover:bg-white/80 transition-colors" id="explore-library-button">
+<span class="material-symbols-outlined">play_circle</span>
+                    Explore Library
+                </button>
+</div>
+</div>
+</div>
+</header>
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto reveal">
+<div class="mb-16">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Curated Genres</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Find your next obsession through our immersive genre portals.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim-delay-1 group relative overflow-hidden glow-orange text-left" data-genre="fiction" type="button">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 blur-2xl rounded-full -mr-12 -mt-12 group-hover:bg-primary/20 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-primary mb-4">book_2</span>
+<h3 class="font-headline-md text-[20px] font-bold">Fiction</h3>
+</button>
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim-delay-2 group relative overflow-hidden glow-cyan text-left" data-genre="fantasy" type="button">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-container/10 blur-2xl rounded-full -mr-12 -mt-12 group-hover:bg-tertiary-container/20 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-tertiary mb-4">castle</span>
+<h3 class="font-headline-md text-[20px] font-bold">Fantasy</h3>
+</button>
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim group relative overflow-hidden glow-purple text-left" data-genre="romance" type="button">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary-container/10 blur-2xl rounded-full -mr-12 -mt-12 group-hover:bg-secondary-container/20 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-secondary mb-4">favorite</span>
+<h3 class="font-headline-md text-[20px] font-bold">Romance</h3>
+</button>
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim-delay-1 group relative overflow-hidden glow-orange text-left" data-genre="mystery" type="button">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary-container/10 blur-2xl rounded-full -mr-12 -mt-12 group-hover:bg-primary-container/20 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-on-primary-container mb-4">search</span>
+<h3 class="font-headline-md text-[20px] font-bold">Mystery</h3>
+</button>
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim-delay-2 group relative overflow-hidden glow-cyan text-left" data-genre="business" type="button">
+<div class="absolute top-0 right-0 w-24 h-24 bg-on-tertiary-fixed-variant/10 blur-2xl rounded-full -mr-12 -mt-12 group-hover:bg-on-tertiary-fixed-variant/20 transition-colors"></div>
+<span class="material-symbols-outlined text-4xl text-tertiary mb-4">work</span>
+<h3 class="font-headline-md text-[20px] font-bold">Business</h3>
+</button>
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim group relative overflow-hidden glow-purple text-left" data-genre="self-help" type="button">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4">psychology</span>
+<h3 class="font-headline-md text-[20px] font-bold">Self-Help</h3>
+</button>
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim-delay-1 group relative overflow-hidden glow-cyan text-left" data-genre="technology" type="button">
+<span class="material-symbols-outlined text-4xl text-tertiary mb-4">biotech</span>
+<h3 class="font-headline-md text-[20px] font-bold">Technology</h3>
+</button>
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim-delay-2 group relative overflow-hidden glow-orange text-left" data-genre="sci-fi" type="button">
+<span class="material-symbols-outlined text-4xl text-primary mb-4">rocket_launch</span>
+<h3 class="font-headline-md text-[20px] font-bold">Sci-Fi</h3>
+</button>
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim group relative overflow-hidden glow-purple text-left" data-genre="horror" type="button">
+<span class="material-symbols-outlined text-4xl text-secondary mb-4">mist</span>
+<h3 class="font-headline-md text-[20px] font-bold">Horror</h3>
+</button>
+<button class="genre-card glass-panel p-8 rounded-[32px] mouse-glow float-anim-delay-1 group relative overflow-hidden glow-cyan text-left" data-genre="biography" type="button">
+<span class="material-symbols-outlined text-4xl text-tertiary mb-4">person</span>
+<h3 class="font-headline-md text-[20px] font-bold">Biography</h3>
+</button>
+</div>
+</section>
+<section class="py-24 bg-surface-container-low overflow-hidden reveal">
+<div class="max-w-container-max mx-auto px-margin-desktop mb-16 flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4" id="carousel-title">Trending Now</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant" id="carousel-copy">The stories capturing the world's attention this week.</p>
+</div>
+<div class="flex gap-4">
+<button class="carousel-nav w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center hover:bg-white transition-colors" id="carousel-prev" type="button">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="carousel-nav w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center hover:bg-white transition-colors" id="carousel-next" type="button">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="flex gap-10 px-margin-desktop overflow-x-auto pb-10 snap-x no-scrollbar max-w-container-max mx-auto" id="trending-carousel" aria-live="polite">
+<div class="flex-shrink-0 w-[340px] snap-center float-anim">
+<div class="relative group cursor-pointer transition-all duration-500 [perspective:1000px] book-card">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:[transform:rotateY(-20deg)translateZ(20px)]">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAodW9KvLvS2ZuCsZqdfsrBPR8VGexbx9-wWrzgrtDXf0VIPWfCgVrnll-gzjoZXzwgCWVjS9hjL5XprGE-xCbI6uMFv0ZG3_TFclhxP74bW2dKnf9wipImILimzq_spRbVVrnkgUeYKPr8WWMNm-EOTWYyrQeA5YaJhxRMJ3e41kavnKJrxhfQwNoJCPiFVkCj_WQ0ZXEOUEzUlnax96pGj0gQlsL4QQXMT7ppclF-m5fKAM-ZDAdqou3ndLPe4IYJb8HJYzh8hQ"/>
+</div>
+<div class="mt-8 space-y-2">
+<span class="font-label-caps text-label-caps text-primary">SCIFI MASTERPIECE</span>
+<h4 class="font-headline-md text-[24px]">Echoes of Tomorrow</h4>
+<p class="font-body-md text-on-surface-variant">By Elena Vance</p>
+</div>
+</div>
+</div>
+<div class="flex-shrink-0 w-[340px] snap-center float-anim-delay-1">
+<div class="relative group cursor-pointer transition-all duration-500 [perspective:1000px] book-card">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:[transform:rotateY(-20deg)translateZ(20px)]">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8gZh562VsTQR55yLGNPGJZvF7BX1wqL3QZl0IBWJm7ARGFnWjFXYCpqEtn0vkYfgjHlaahO6K-1cBLG0n_5MWcU47n9AhOc6Ad_Ey07L-StmYwZk43WfyEHfONu3RIsRPHdNKu8_EIVEvqF15L0gAh9FCC4xISRF0s_M_PEpsEKh87OrI15xTanmf5DUXCHloVkae59qiUeYTtI5Min97s66Jmn3dvAk9sV9a7z6yT76AMZ6CczgM0gqzyfWoR3IKdii8QKKXuw"/>
+</div>
+<div class="mt-8 space-y-2">
+<span class="font-label-caps text-label-caps text-primary">BUSINESS STRATEGY</span>
+<h4 class="font-headline-md text-[24px]">The Infinite Cycle</h4>
+<p class="font-body-md text-on-surface-variant">By Marcus Thorne</p>
+</div>
+</div>
+</div>
+<div class="flex-shrink-0 w-[340px] snap-center float-anim-delay-2">
+<div class="relative group cursor-pointer transition-all duration-500 [perspective:1000px] book-card">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:[transform:rotateY(-20deg)translateZ(20px)]">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4FQwqPtpBCqmcPX_swGDHJdaUKOETNgCKfGUx9xVE0oPyi79Sv2gw3uQtMCXigycTdJCdXl7cse_Y-FT1g1ZlKNwj1ZoP4UhrjcEg45DJayJfwQGFzXmYdhLBuMcmcUIx4HM2XrcbAZnlXM6xoBetLwaONqD_5osTeyf14GbWzgYw7KjrZf9vNfas7tGbg5bS05Jkq5vdgCBNSI1_-L83SkuMklKKuHmSPENmf7IyyN6AB5XSw1OrtD6rJMjRMuOZEVR6rG2RXg"/>
+</div>
+<div class="mt-8 space-y-2">
+<span class="font-label-caps text-label-caps text-primary">PHILOSOPHY</span>
+<h4 class="font-headline-md text-[24px]">Quiet Mind, Loud Soul</h4>
+<p class="font-body-md text-on-surface-variant">By Sarah Jenkins</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Discovery Section with Interactive Expanding Library -->
+<section class="py-28 px-margin-desktop max-w-container-max mx-auto reveal">
+<div class="grid lg:grid-cols-12 gap-16 items-center">
+<div class="lg:col-span-5 space-y-7">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-white/40 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-caps text-label-caps text-primary">Luminous Discovery</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg">Your Next Obsession is Already <span class="text-transparent bg-clip-text aurora-gradient">Glowing</span>.</h2>
+<p class="font-body-lg text-on-surface-variant">Explore our curated collections where every title is chosen to match your current vibe. Our cinematic gallery makes finding your next read as engaging as the book itself.</p>
+<a class="inline-flex px-8 py-4 bg-primary text-white rounded-full font-headline-md text-body-lg shadow-lg hover:shadow-primary/30 transition-all" href="/library" target="_top">Open Collection</a>
+</div>
+<div class="lg:col-span-7 relative min-h-[500px] flex items-center justify-center">
+<div class="library-scene expanded-gallery" id="expanding-library">
+<!-- Books will be generated via JS -->
+</div>
+</div>
+</div>
+</section>
+<section class="py-28 px-margin-desktop max-w-container-max mx-auto reveal">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-12">
+<h2 class="font-headline-lg text-headline-lg">Intelligence Meets <span class="text-primary">Imagination</span>.</h2>
+<div class="space-y-8">
+<div class="flex gap-6 items-start reveal">
+<div class="w-14 h-14 rounded-2xl aurora-gradient flex items-center justify-center flex-shrink-0 text-white shadow-lg float-anim">
+<span class="material-symbols-outlined text-3xl">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-headline-md text-[22px] mb-2">AI-Powered Recommendations</h4>
+<p class="font-body-md text-on-surface-variant">Our custom neural network understands your reading mood, not just your genre history.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start reveal">
+<div class="w-14 h-14 rounded-2xl bg-tertiary flex items-center justify-center flex-shrink-0 text-white shadow-lg float-anim-delay-1">
+<span class="material-symbols-outlined text-3xl">headphones</span>
+</div>
+<div>
+<h4 class="font-headline-md text-[22px] mb-2">Cinematic Audiobooks</h4>
+<p class="font-body-md text-on-surface-variant">Immersive soundscapes and AI-voiced narration that brings every word to life.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start reveal">
+<div class="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0 text-white shadow-lg float-anim-delay-2">
+<span class="material-symbols-outlined text-3xl">offline_bolt</span>
+</div>
+<div>
+<h4 class="font-headline-md text-[22px] mb-2">Smart Offline Sync</h4>
+<p class="font-body-md text-on-surface-variant">Read or listen anywhere. Your progress and library sync instantly across all devices.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative rounded-[32px] overflow-hidden portal-scene h-[500px] flex items-center justify-center" id="genre-portal">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,123,84,0.15)_0%,transparent_70%)]"></div>
+<span class="material-symbols-outlined text-9xl text-white/20 z-10 animate-pulse">psychology</span>
+</div>
+</div>
+</section>
+<section class="py-28 bg-surface-container-highest/30 reveal">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center mb-20">
+<h2 class="font-headline-lg text-headline-lg mb-6">Designed for Focus</h2>
+<div class="flex justify-center gap-8 border-b border-outline-variant/30 max-w-2xl mx-auto">
+<button class="pb-4 px-4 border-b-2 border-primary text-primary font-bold font-label-caps text-label-caps">READING MODE</button>
+<button class="pb-4 px-4 border-b-2 border-transparent text-on-surface-variant font-medium font-label-caps text-label-caps hover:text-primary transition-colors">AUDIO PLAYER</button>
+<button class="pb-4 px-4 border-b-2 border-transparent text-on-surface-variant font-medium font-label-caps text-label-caps hover:text-primary transition-colors">ANALYTICS</button>
+</div>
+</div>
+<div class="max-w-6xl mx-auto px-margin-desktop">
+<div class="rounded-[48px] overflow-hidden shelf-corridor relative shadow-2xl flex items-center" id="shelf-corridor-container">
+<div class="shelf-row" id="shelf-row-1" style="top: 100px;"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-[#1b1b1c] via-transparent to-[#1b1b1c] pointer-events-none z-10"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-[#1b1b1c]/40 via-transparent to-[#1b1b1c]/40 pointer-events-none z-10"></div>
+</button>
+</div>
+</section>
+<section class="py-28 px-margin-desktop reveal">
+<div class="max-w-container-max mx-auto">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+<div class="text-center space-y-2 reveal">
+<div class="font-display-hero text-headline-lg text-primary">500K+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Active Readers</div>
+</div>
+<div class="text-center space-y-2 reveal">
+<div class="font-display-hero text-headline-lg text-secondary">100K+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Premium Titles</div>
+</div>
+<div class="text-center space-y-2 reveal">
+<div class="font-display-hero text-headline-lg text-tertiary">4.9/5</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">User Rating</div>
+</div>
+<div class="text-center space-y-2 reveal">
+<div class="font-display-hero text-headline-lg text-on-primary-fixed-variant">15M+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Pages Read</div>
+</div>
+</div>
+<div class="grid lg:grid-cols-3 gap-8">
+<div class="glass-panel p-10 rounded-[32px] space-y-6 mouse-glow glow-orange reveal">
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface italic">"The interface is purely magical. I've never felt so immersed in a digital book before."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest"></div>
+<div>
+<div class="font-bold text-on-surface">Jameson Blake</div>
+<div class="text-sm text-on-surface-variant">Professional Reader</div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-10 rounded-[32px] space-y-6 mouse-glow glow-cyan reveal">
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface italic">"The AI suggestions are scarily accurate. It found three of my new favorite authors in one week."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest"></div>
+<div>
+<div class="font-bold text-on-surface">Sophia Chen</div>
+<div class="text-sm text-on-surface-variant">Tech Enthusiast</div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-10 rounded-[32px] space-y-6 mouse-glow glow-purple reveal">
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-on-surface italic">"A masterpiece of UI design. Reading on LumiBooks feels like a premium event every single time."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest"></div>
+<div>
+<div class="font-bold text-on-surface">Marc O'Neill</div>
+<div class="text-sm text-on-surface-variant">Creative Director</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-28 px-margin-desktop reveal">
+<div class="max-w-container-max mx-auto">
+<div class="aurora-gradient rounded-[64px] p-2 overflow-hidden shadow-2xl float-anim">
+<div class="bg-white/10 backdrop-blur-md rounded-[62px] py-24 px-8 text-center text-white relative">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.2)_0%,transparent_60%)]"></div>
+<div class="relative z-10 max-w-3xl mx-auto space-y-8">
+<h2 class="font-headline-lg text-headline-lg">Your Next Adventure Starts Here.</h2>
+<p class="font-body-lg opacity-90">Join 500,000+ readers and get access to our entire cinematic library today.</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center items-center pt-8">
+<div class="w-full md:w-96 relative">
+<input class="w-full px-8 py-5 rounded-full bg-white/10 border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 backdrop-blur-xl" placeholder="Enter your email" type="email"/>
+</div>
+<button class="w-full md:w-auto px-10 py-5 bg-white text-primary font-headline-md rounded-full hover:scale-105 transition-transform shadow-xl">Get Early Access</button>
+</div>
+<div class="pt-12 flex justify-center gap-12 opacity-60 font-label-caps text-label-caps tracking-widest">
+<span>CANCEL ANYTIME</span>
+<span>7-DAY FREE TRIAL</span>
+<span>OFFLINE MODE</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="rounded-t-[40px] w-full px-margin-mobile md:px-margin-desktop py-12 bg-surface-dim/40 backdrop-blur-lg border-t border-white/10 reveal">
+<div class="flex flex-col md:flex-row justify-between items-center gap-gutter max-w-container-max mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-headline-md text-headline-md text-primary font-extrabold tracking-tighter">LumiBooks</span>
+<p class="font-body-md text-on-surface-variant/80 max-w-xs text-center md:text-left">&copy; 2024 LumiBooks. Cinematic Reading Experiences.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-12">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Terms</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">API</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<div class="flex gap-6">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-lg">public</span>
+</div>
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-lg">chat</span>
+</div>
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-lg">share</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // 1. Scroll Reveal Logic
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const apiBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000/api'
+        : '/api';
+    const carousel = document.getElementById('trending-carousel');
+    const carouselTitle = document.getElementById('carousel-title');
+    const carouselCopy = document.getElementById('carousel-copy');
+    const genreButtons = document.querySelectorAll('.genre-card');
+    let currentBooks = [];
+
+    function goTo(path) {
+        window.top.location.href = path;
+    }
+
+    function cleanText(value, fallback = '') {
+        const div = document.createElement('div');
+        div.innerHTML = String(value || fallback);
+        return div.textContent || div.innerText || fallback;
+    }
+
+    function coverUrl(book) {
+        const candidates = [book.thumbnail, ...(book.coverCandidates || [])].filter(Boolean);
+        return candidates[0] ? candidates[0].replace('http://', 'https://').replace('zoom=1', 'zoom=0').replace('&edge=curl', '') : '';
+    }
+
+    function coverFallback(title, author, category) {
+        return `<div class="w-full h-full aurora-gradient flex flex-col justify-end p-6 text-white">
+<span class="font-label-caps text-[11px] opacity-75 mb-3">${category}</span>
+<span class="font-headline-md text-[26px] leading-tight">${title.split(' ').slice(0, 4).join(' ')}</span>
+<span class="font-body-md text-[13px] opacity-80 mt-4">${author}</span>
+</div>`;
+    }
+
+    async function fetchJsonWithRetry(path, attempts = 3) {
+        let lastError;
+        for (let attempt = 0; attempt < attempts; attempt += 1) {
+            try {
+                const response = await fetch(`${apiBase}${path}`);
+                if (!response.ok) throw new Error(`Request failed with ${response.status}`);
+                return await response.json();
+            } catch (error) {
+                lastError = error;
+                await new Promise(resolve => setTimeout(resolve, 220 * (attempt + 1)));
+            }
+        }
+        throw lastError;
+    }
+
+    function bookCard(book, index) {
+        const category = cleanText(book.categories?.[0] || book.genre || 'Featured').toUpperCase();
+        const title = cleanText(book.title, 'Untitled volume');
+        const author = cleanText((book.authors || []).join(', ') || book.author, 'Unknown author');
+        const candidates = [book.thumbnail, ...(book.coverCandidates || [])].filter(Boolean).map(url => String(url).replace('http://', 'https://').replace('zoom=1', 'zoom=0').replace('&edge=curl', ''));
+        const image = coverUrl(book);
+        const coverMarkup = image
+            ? `<img class="w-full h-full object-cover" alt="${title} cover" loading="lazy" data-cover-index="0" data-cover-candidates='${JSON.stringify(candidates)}' src="${image}"/>`
+            : coverFallback(title, author, category);
+
+        return `
+<div class="flex-shrink-0 w-[340px] snap-center ${index % 3 === 0 ? 'float-anim' : index % 3 === 1 ? 'float-anim-delay-1' : 'float-anim-delay-2'}">
+<button class="relative group cursor-pointer transition-all duration-500 [perspective:1000px] book-card text-left w-full" data-book-id="${book.id}" type="button" aria-label="Open ${title}">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:[transform:rotateY(-20deg)translateZ(20px)]">
+${coverMarkup}
+</div>
+<div class="mt-8 space-y-2">
+<span class="font-label-caps text-label-caps text-primary">${category}</span>
+<h4 class="font-headline-md text-[24px]">${title}</h4>
+<p class="font-body-md text-on-surface-variant">By ${author}</p>
+</div>
+</button>
+</div>`;
+    }
+
+    function renderBooks(books) {
+        if (!carousel || !books?.length) return;
+        currentBooks = books;
+        carousel.innerHTML = books.slice(0, 18).map(bookCard).join('');
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        carousel.querySelectorAll('.book-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-book-id');
+                if (id) goTo(`/books/${encodeURIComponent(id)}`);
+            });
+        });
+        carousel.querySelectorAll('img[data-cover-candidates]').forEach(img => {
+            img.addEventListener('error', () => {
+                const candidates = JSON.parse(img.getAttribute('data-cover-candidates') || '[]');
+                const nextIndex = Number(img.getAttribute('data-cover-index') || '0') + 1;
+                if (candidates[nextIndex]) {
+                    img.setAttribute('data-cover-index', String(nextIndex));
+                    img.src = candidates[nextIndex];
+                    return;
+                }
+                const card = img.closest('.book-card');
+                const title = card?.querySelector('h4')?.textContent || 'Untitled volume';
+                const author = (card?.querySelector('p')?.textContent || 'Unknown author').replace(/^By\s+/, '');
+                const category = card?.querySelector('span')?.textContent || 'FEATURED';
+                img.parentElement.innerHTML = coverFallback(title, author, category);
+            });
+        });
+    }
+
+    async function loadBooks(path, title, copy) {
+        if (!carousel) return;
+        carousel.classList.add('is-loading');
+        if (carouselTitle) carouselTitle.textContent = title;
+        if (carouselCopy) carouselCopy.textContent = 'Loading books from the live library...';
+        try {
+            const payload = await fetchJsonWithRetry(path);
+            renderBooks(payload.books || []);
+            if (carouselCopy) carouselCopy.textContent = copy;
+        } catch (error) {
+            if (carouselCopy) carouselCopy.textContent = 'The live library is taking longer than expected. Try again in a moment.';
+        } finally {
+            carousel.classList.remove('is-loading');
+        }
+    }
+
+    genreButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const genre = button.getAttribute('data-genre');
+            const label = button.querySelector('h3')?.textContent || 'Genre';
+            if (!genre) return;
+            genreButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+            loadBooks(`/books/genres/${encodeURIComponent(genre)}?maxResults=30`, `${label} Books`, `Fresh ${label.toLowerCase()} picks from the live shelves.`);
+            carousel?.closest('section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    document.getElementById('carousel-prev')?.addEventListener('click', () => {
+        carousel?.scrollBy({ left: -Math.min(720, carousel.clientWidth * 0.86), behavior: 'smooth' });
+    });
+
+    document.getElementById('carousel-next')?.addEventListener('click', () => {
+        carousel?.scrollBy({ left: Math.min(720, carousel.clientWidth * 0.86), behavior: 'smooth' });
+    });
+
+    document.getElementById('start-reading-button')?.addEventListener('click', async () => {
+        if (!currentBooks.length) {
+            try {
+                const payload = await fetchJsonWithRetry('/books/trending?maxResults=12');
+                currentBooks = payload.books || [];
+            } catch {}
+        }
+        const firstBook = currentBooks[0];
+        goTo(firstBook?.id ? `/reader?book=${encodeURIComponent(firstBook.id)}` : '/reader');
+    });
+
+    document.getElementById('explore-library-button')?.addEventListener('click', () => goTo('/library'));
+
+    loadBooks('/books/trending?maxResults=30', 'Trending Now', "The stories capturing the world's attention this week.");
+
+    // 2. Mouse Tracking & Parallax
+    const ambientCursor = document.getElementById('ambient-cursor');
+    document.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        document.querySelectorAll('.mouse-glow').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            el.style.setProperty('--mouse-x', `${clientX - rect.left}px`);
+            el.style.setProperty('--mouse-y', `${clientY - rect.top}px`);
+        });
+        if (ambientCursor) ambientCursor.style.transform = `translate(${clientX}px, ${clientY}px)`;
+    });
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        document.querySelectorAll('.parallax-element').forEach(el => {
+            const speed = el.dataset.parallaxSpeed || 0.1;
+            el.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+
+        // Corridor Parallax
+        const corridor = document.getElementById('shelf-row-1');
+        if (corridor) {
+            const rect = document.getElementById('shelf-corridor-container').getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const move = (window.innerHeight - rect.top) * 0.2;
+                corridor.style.transform = `translateX(-${move}px)`;
+            }
+        }
+    });
+
+    // 3. Expanding Library System
+    const libraryContainer = document.getElementById('expanding-library');
+    const libraryData = [
+        { title: "Deep Mind", author: "Dr. Aris Thorne", rating: 4.8, color: "#a63a19", icon: "psychology" },
+        { title: "Neon Skies", author: "Kaelen Vance", rating: 4.9, color: "#5d3fe0", icon: "rocket_launch" },
+        { title: "The Silent Forest", author: "Elara Moon", rating: 4.7, color: "#b1008c", icon: "nature" },
+        { title: "Pulse of Gaia", author: "C. J. Wright", rating: 4.5, color: "#3600b3", icon: "energy_savings_leaf" },
+        { title: "Quantum Solace", author: "Irene Adler", rating: 4.9, color: "#87006a", icon: "science" }
+    ];
+
+    let isExpanded = true;
+
+    function createBookElement(data, index, isMain = false) {
+        const book = document.createElement('div');
+        book.className = `book-card-premium ${isMain ? 'floating' : ''}`;
+        book.style.backgroundColor = data.color;
+        book.style.zIndex = 20 - index;
+        
+        book.innerHTML = `
+            <div class="spine-edge"></div>
+            <div class="cover-design">
+                <span class="material-symbols-outlined mb-2 opacity-40">${data.icon}</span>
+                <p class="font-label-caps text-[10px] opacity-70 mb-1">LUMIBOOKS PREMIER</p>
+                <h4 class="font-headline-md text-[14px] leading-tight mb-1">${data.title}</h4>
+                <p class="font-body-md text-[10px] opacity-80">${data.author}</p>
+            </div>
+            <div class="tooltip-premium">
+                <p class="font-bold text-sm">${data.title}</p>
+                <p class="text-xs opacity-70 mb-1">${data.author}</p>
+                <div class="flex gap-0.5 text-primary-container text-[10px]">
+                    ${'&#9733;'.repeat(Math.floor(data.rating))}
+                </div>
+            </div>
+        `;
+
+        book.style.animationDelay = `${index * -0.7}s`;
+        book.addEventListener('click', () => settleBooks(book.parentElement, book.classList.contains('compact')));
+
+        return book;
+    }
+
+    function settleBooks(container, compact = false) {
+        const books = container.querySelectorAll('.book-card-premium');
+        books.forEach((book, i) => {
+            const count = books.length;
+            const angle = (i - (count - 1) / 2) * (compact ? 18 : 23);
+            const radius = compact ? 205 : 255;
+            const x = Math.sin(angle * Math.PI / 180) * radius;
+            const y = -Math.cos(angle * Math.PI / 180) * radius * 0.12 + (i * (compact ? 8 : 10));
+            const rot = angle * 0.58;
+            const z = i * 24;
+
+            book.style.transform = `translate3d(${x}px, calc(${y}px - var(--scene-shift, 0px)), ${z}px) rotateZ(${rot}deg) rotateY(-9deg)`;
+            book.classList.add('floating');
+        });
+    }
+
+    // Initial load
+    libraryData.forEach((data, index) => {
+        const book = createBookElement(data, index, index === 0);
+        libraryContainer.appendChild(book);
+    });
+    settleBooks(libraryContainer, false);
+
+    // 4. Flying Genre Portal
+    const portal = document.getElementById('genre-portal');
+    const icons = ['castle', 'rocket_launch', 'search', 'auto_stories', 'history_edu', 'biotech', 'pets'];
+    if (portal) {
+        setInterval(() => {
+            const icon = icons[Math.floor(Math.random() * icons.length)];
+            const item = document.createElement('span');
+            item.className = 'material-symbols-outlined flying-item';
+            item.textContent = icon;
+            item.style.left = `${Math.random() * 80 + 10}%`;
+            item.style.top = `${Math.random() * 80 + 10}%`;
+            item.style.fontSize = `${Math.random() * 40 + 20}px`;
+            portal.appendChild(item);
+            setTimeout(() => item.remove(), 4000);
+        }, 600);
+    }
+
+    // 5. Infinite Bookshelf Generation
+    const shelfRow = document.getElementById('shelf-row-1');
+    const titles = ['Deep Mind', 'Neon Skies', 'Wilderness', 'Atlas', 'Odyssey', 'Aether', 'Echoes', 'Solace', 'Zenith', 'Roots', 'Pulse', 'Haven', 'Void', 'Bloom', 'Rift'];
+    const spineColors = ['#a63a19', '#5d3fe0', '#b1008c', '#3600b3', '#8b716a', '#1b1b1c', '#58423c'];
+    if (shelfRow) {
+        for (let i = 0; i < 40; i++) {
+            const spine = document.createElement('div');
+            spine.className = 'spine';
+            spine.textContent = titles[i % titles.length].toUpperCase();
+            spine.style.backgroundColor = spineColors[Math.floor(Math.random() * spineColors.length)];
+            spine.style.height = `${240 + Math.random() * 60}px`;
+            shelfRow.appendChild(spine);
+        }
+    }
+
+    // 6. Particle System for Hero
+    const canvas = document.getElementById('particles-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function init() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        class P {
+            constructor() { this.reset(); }
+            reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.s = Math.random() * 2 + 1; this.sx = (Math.random() - 0.5) * 0.3; this.sy = (Math.random() - 0.5) * 0.3; this.o = Math.random() * 0.4; }
+            update() { this.x += this.sx; this.y += this.sy; if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) this.reset(); }
+            draw() { ctx.fillStyle = `rgba(255,123,84,${this.o})`; ctx.beginPath(); ctx.arc(this.x, this.y, this.s, 0, Math.PI * 2); ctx.fill(); }
+        }
+        init();
+        for (let i = 0; i < 60; i++) particles.push(new P());
+        function anim() { ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(anim); }
+        anim();
+        window.addEventListener('resize', init);
+    }
+</script>
+</body></html>

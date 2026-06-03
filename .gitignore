@@ -1,0 +1,16 @@
+node_modules
+.next
+dist
+coverage
+.env
+.env.local
+.env.*.local
+Backend/logs/*
+Backend/uploads/*
+Backend/diagnostics/*.log
+Frontend/diagnostics/*.log
+!.gitkeep
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+frontend-dev*.log
