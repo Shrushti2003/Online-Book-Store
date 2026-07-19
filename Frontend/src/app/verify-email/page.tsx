@@ -1,7 +1,7 @@
-import { AuthPanel } from "@/components/auth-panel";
+import { redirect } from "next/navigation";
 
 export const metadata = { title: "Verify Email" };
 
 export default function VerifyEmailPage() {
-  return <AuthPanel mode="verify-email" />;
+  redirect("/sign-in");
 }

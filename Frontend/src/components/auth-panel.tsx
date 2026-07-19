@@ -27,12 +27,6 @@ const authCopy: Record<string, { title: string; body: string; action: string; as
     action: "Send Reset Link",
     aside: "Your library is safe. We will only send the recovery chapter to your email."
   },
-  "verify-email": {
-    title: "Confirm your reading signal.",
-    body: "One small step before the shelves light up.",
-    action: "Verify Email",
-    aside: "Verification protects your notes, bookmarks, rewards, and private reading history."
-  },
   "reset-password": {
     title: "Create a stronger key.",
     body: "Choose a password worthy of an infinite library.",
@@ -45,7 +39,7 @@ export function AuthPanel({ mode }: { mode: keyof typeof authCopy }) {
   const copy = authCopy[mode];
   const router = useRouter();
   const { signIn, setActive: setSignInActive, isLoaded: signInLoaded } = useSignIn();
-  const { signUp, setActive: setSignUpActive, isLoaded: signUpLoaded } = useSignUp();
+  const { signUp, isLoaded: signUpLoaded } = useSignUp();
   const { isSignedIn } = useUser();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -77,26 +71,24 @@ export function AuthPanel({ mode }: { mode: keyof typeof authCopy }) {
         if (passwordScore < 3) throw new Error("Use at least 8 characters with a number and mixed characters.");
         const created = await signUp.create({ emailAddress: email, password, unsafeMetadata: { fullName } });
         if (created.status === "complete") {
-          await setSignUpActive({ session: created.createdSessionId });
           if (remember) window.localStorage.setItem("lumibooks:remember", email);
-          router.push("/dashboard");
+          router.push("/sign-in");
         } else {
-          await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-          setStatus("Check your email for the verification code.");
-          router.push("/verify-email");
+          setError("Sign-up still requires email verification in Clerk. Disable required email verification in the Clerk Dashboard, then try again.");
         }
         return;
       }
 
       if (mode === "sign-in") {
         if (!signInLoaded) return;
-        const result = await signIn.create({ identifier: email, password });
+        const result = await signIn.create({ identifier: email.trim(), strategy: "password", password });
         if (result.status !== "complete") {
-          setStatus("Additional verification is required.");
+          console.error("Sign-in attempt not complete:", result);
+          setStatus(`Additional verification is required (${result.status}).`);
           return;
         }
         await setSignInActive({ session: result.createdSessionId });
-        if (remember) window.localStorage.setItem("lumibooks:remember", email);
+        if (remember) window.localStorage.setItem("lumibooks:remember", email.trim());
         router.push("/dashboard");
         return;
       }
@@ -104,6 +96,7 @@ export function AuthPanel({ mode }: { mode: keyof typeof authCopy }) {
       setStatus("This flow is ready for Clerk-hosted verification.");
     } catch (caught) {
       const clerkError = caught as { errors?: { longMessage?: string; message?: string }[]; message?: string };
+      console.error("Clerk authentication error:", clerkError.errors ?? clerkError);
       setError(clerkError.errors?.[0]?.longMessage ?? clerkError.errors?.[0]?.message ?? clerkError.message ?? "Authentication failed.");
     }
   }
@@ -179,7 +172,7 @@ export function AuthPanel({ mode }: { mode: keyof typeof authCopy }) {
               type="email"
               value={email}
             />
-            {mode !== "forgot-password" && mode !== "verify-email" ? (
+            {mode !== "forgot-password" ? (
               <div className="relative">
                 <input
                   className="h-13 w-full rounded-[8px] border border-black/10 bg-white/62 px-4 pr-12 outline-none transition focus:border-[#7B61FF] focus:shadow-[0_0_0_4px_rgba(123,97,255,.12)]"

@@ -2,8 +2,7 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isProtectedRoute = createRouteMatcher([
   "/ai-librarian(.*)",
-  "/ai-recommendations(.*)",
-  "/community(.*)"
+  "/ai-recommendations(.*)"
 ]);
 
 export const proxy = clerkMiddleware(async (auth, req) => {
