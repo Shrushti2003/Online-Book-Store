@@ -4,9 +4,8 @@ import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { BookCard } from "@/components/book-card";
+import { apiFetch } from "@/lib/api";
 import type { Book } from "@/types/book";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api";
 
 type ApiBook = {
   id: string;
@@ -68,12 +67,12 @@ export function SearchResults({ initialBooks, initialQuery = "fiction" }: { init
   const { data, isFetching } = useQuery({
     queryKey: ["books", query, genre],
     queryFn: async () => {
-      const response = await fetch(`${API_URL}${searchPath}`);
-      if (!response.ok) throw new Error("Search failed");
+      const response = await apiFetch(searchPath);
       const payload = await response.json();
       return (payload.books ?? []).map(normalize) as Book[];
     },
     initialData: initialBooks,
+    placeholderData: (previousBooks) => previousBooks,
     staleTime: 60_000
   });
   const sortedBooks = useMemo(() => {
@@ -108,7 +107,7 @@ export function SearchResults({ initialBooks, initialQuery = "fiction" }: { init
         </select>
       </div>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {isFetching
+        {isFetching && !sortedBooks.length
           ? Array.from({ length: 8 }).map((_, index) => <div key={index} className="h-96 animate-pulse rounded-[8px] bg-white/60" />)
           : sortedBooks.map((book, index) => <BookCard key={book.id} book={book} index={index} />)}
       </div>

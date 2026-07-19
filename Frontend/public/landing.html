@@ -830,9 +830,22 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    const apiBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:5000/api'
-        : '/api';
+    function readApiBase() {
+        const isLocal = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+        const fallback = isLocal ? 'http://localhost:5000/api' : '';
+        const params = new URLSearchParams(window.location.search);
+        const configuredBase = params.get('apiBase') || fallback;
+        if (!configuredBase) return '';
+        try {
+            const url = new URL(configuredBase);
+            if (!['http:', 'https:'].includes(url.protocol)) return fallback;
+            return url.href.replace(/\/+$/, '');
+        } catch {
+            return fallback;
+        }
+    }
+
+    const apiBase = readApiBase();
     const carousel = document.getElementById('trending-carousel');
     const carouselTitle = document.getElementById('carousel-title');
     const carouselCopy = document.getElementById('carousel-copy');
@@ -862,17 +875,38 @@
 </div>`;
     }
 
-    async function fetchJsonWithRetry(path, attempts = 3) {
+    function isRetryableStatus(status) {
+        return [502, 503, 504].includes(status);
+    }
+
+    function retryDelay(attempt) {
+        return Math.min((500 * (2 ** attempt)) + Math.floor(Math.random() * 250), 8000);
+    }
+
+    async function fetchJsonWithRetry(path, maxRetries = 6) {
+        if (!apiBase) throw new Error('API URL is not configured.');
         let lastError;
-        for (let attempt = 0; attempt < attempts; attempt += 1) {
+        for (let attempt = 0; attempt <= maxRetries; attempt += 1) {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 12000);
             try {
-                const response = await fetch(`${apiBase}${path}`);
-                if (!response.ok) throw new Error(`Request failed with ${response.status}`);
-                return await response.json();
+                const response = await fetch(`${apiBase}${path}`, { signal: controller.signal });
+                if (!response.ok) {
+                    const error = new Error(`Request failed with ${response.status}`);
+                    error.status = response.status;
+                    if (!isRetryableStatus(response.status) || attempt === maxRetries) throw error;
+                    lastError = error;
+                } else {
+                    return await response.json();
+                }
             } catch (error) {
+                if (error.status && !isRetryableStatus(error.status)) throw error;
+                if (attempt === maxRetries) throw error;
                 lastError = error;
-                await new Promise(resolve => setTimeout(resolve, 220 * (attempt + 1)));
+            } finally {
+                clearTimeout(timeout);
             }
+            await new Promise(resolve => setTimeout(resolve, retryDelay(attempt)));
         }
         throw lastError;
     }

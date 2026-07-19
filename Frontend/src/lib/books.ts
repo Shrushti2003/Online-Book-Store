@@ -1,7 +1,6 @@
 import { featuredBooks } from "@/lib/content";
+import { apiFetch } from "@/lib/api";
 import type { Book } from "@/types/book";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api";
 
 type ApiBook = {
   id: string;
@@ -88,21 +87,15 @@ function sharpenCover(url?: string | null) {
 }
 
 async function fetchBooks(path: string, fallback = featuredBooks): Promise<Book[]> {
-  let lastError;
-  for (let attempt = 0; attempt < 3; attempt += 1) {
-    try {
-      const response = await fetch(`${API_URL}${path}`, { next: { revalidate: 900 } });
-      if (!response.ok) throw new Error(`Books API returned ${response.status}`);
-      const data = (await response.json()) as { books?: ApiBook[] };
-      const books = data.books?.map(normalizeBook) ?? [];
-      return books.length ? books : fallback;
-    } catch (error) {
-      lastError = error;
-      await new Promise((resolve) => setTimeout(resolve, 180 * (attempt + 1)));
-    }
+  try {
+    const response = await apiFetch(path, { next: { revalidate: 900 } });
+    const data = (await response.json()) as { books?: ApiBook[] };
+    const books = data.books?.map(normalizeBook) ?? [];
+    return books.length ? books : fallback;
+  } catch (error) {
+    console.warn("Falling back to local featured books.", error);
+    return fallback;
   }
-  console.warn("Falling back to local featured books.", lastError);
-  return fallback;
 }
 
 export function getTrendingBooks() {
@@ -126,8 +119,7 @@ export function getCategoryBooks(category: string) {
 export async function getBook(id: string): Promise<Book | null> {
   const local = featuredBooks.find((book) => book.id === id);
   try {
-    const response = await fetch(`${API_URL}/books/${encodeURIComponent(id)}`, { next: { revalidate: 900 } });
-    if (!response.ok) return local ?? null;
+    const response = await apiFetch(`/books/${encodeURIComponent(id)}`, { next: { revalidate: 900 } });
     const data = (await response.json()) as { book?: ApiBook };
     return data.book ? normalizeBook(data.book) : local ?? null;
   } catch {

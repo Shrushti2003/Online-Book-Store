@@ -19,9 +19,8 @@ import {
 import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { apiFetch } from "@/lib/api";
 import type { Book } from "@/types/book";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api";
 
 type ReaderPayload = {
   book: Book;
@@ -188,8 +187,7 @@ export function ReaderLayout() {
         setPayload(loadingPayload(bookId));
         setPage(0);
         setBookmarkedPages([]);
-        const response = await fetch(`${API_URL}/books/${encodeURIComponent(bookId)}/read?mode=${readerMode}`);
-        if (!response.ok) throw new Error("Book data could not be loaded.");
+        const response = await apiFetch(`/books/${encodeURIComponent(bookId)}/read?mode=${readerMode}`);
         const nextPayload = (await response.json()) as ReaderPayload;
         if (!active) return;
         setPayload(nextPayload);
@@ -293,7 +291,7 @@ export function ReaderLayout() {
     setToolResult("");
     try {
       const token = await getToken();
-      const response = await fetch(`${API_URL}${path}`, {
+      const response = await apiFetch(path, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
