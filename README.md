@@ -563,6 +563,85 @@ Yes. LumiBooks uses responsive layouts and components designed to work across de
 
 ---
 
+## 🧠 Challenges, Learnings and Future Improvements
+
+### 🚧 Challenges Faced
+
+#### 1. Integrating Multiple Book Data Sources
+
+Book information from Google Books, Open Library, and Gutendex differs in structure and availability. Some records may have missing covers, descriptions, identifiers, or readable content.
+
+**Solution:** The backend normalizes data into a consistent book structure and provides fallback values when information is unavailable.
+
+#### 2. Handling Authentication Across the Full Stack
+
+Protected frontend pages and backend API endpoints must identify the same authenticated user securely.
+
+**Solution:** Clerk handles user authentication, while backend middleware verifies protected requests before granting access to personalized and AI-powered features.
+
+#### 3. Finding Legally Readable Book Content
+
+Book metadata does not always include complete reading content, and copyrighted books may only provide previews.
+
+**Solution:** LumiBooks checks available previews and public-domain sources while respecting the access limitations provided by external services.
+
+#### 4. Building a Multi-Format Reader
+
+PDF and EPUB files require different rendering engines, navigation methods, and loading behavior.
+
+**Solution:** The document reader uses PDF.js for PDF content and EPUB.js for EPUB content while presenting both through a consistent reading interface.
+
+#### 5. Managing AI Responses and External API Failures
+
+AI and book-provider requests can fail because of network errors, missing data, rate limits, or invalid responses.
+
+**Solution:** The application uses validation, centralized error handling, loading states, fallbacks, and controlled server-side integrations to provide a more reliable experience.
+
+#### 6. Maintaining Performance in a Visual Interface
+
+Animations, 3D elements, large book collections, and remote cover images can affect rendering performance.
+
+**Solution:** The interface uses reusable components, server-side data fetching, cached requests, image optimization, and controlled animations to balance visual quality with performance.
+
+---
+
+### 🎓 Key Learnings
+
+Building LumiBooks strengthened my understanding of:
+
+- Designing and maintaining a full-stack monorepo.
+- Building applications with Next.js App Router and React Server Components.
+- Creating reusable and strongly typed React components.
+- Structuring an Express backend using routes, controllers, services, and middleware.
+- Implementing authentication across frontend and backend systems.
+- Designing MongoDB models for personalized user data.
+- Normalizing inconsistent responses from multiple external APIs.
+- Integrating AI features securely through backend endpoints.
+- Supporting PDF and EPUB content in a web-based reader.
+- Managing loading, empty, error, and fallback states.
+- Protecting API credentials with environment variables.
+- Creating responsive and accessible interfaces.
+- Preparing an application for production deployment.
+
+---
+
+### 🔮 Future Improvements
+
+Planned improvements for LumiBooks include:
+
+- [ ] Synchronize reading progress across devices.
+- [ ] Add annotations, highlights, bookmarks, and searchable notes.
+- [ ] Improve recommendations using reading history and user feedback.
+- [ ] Add reader-created book lists and collections.
+- [ ] Introduce community reviews, ratings, discussions, and reading clubs.
+- [ ] Provide advanced filters for language, author, rating, and availability.
+- [ ] Add offline reading through Progressive Web App capabilities.
+- [ ] Improve accessibility and keyboard navigation.
+- [ ] Add automated unit, integration, and end-to-end tests.
+- [ ] Introduce CI/CD checks using GitHub Actions.
+- [ ] Add API documentation using OpenAPI and Swagger.
+- [ ] Improve application monitoring and production analytics.
+
 ## 🤝 Contributing
 
 Contributions, suggestions, and improvements are welcome.
