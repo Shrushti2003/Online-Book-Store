@@ -1,39 +1,40 @@
 <div align="center">
 
 # 📚 LumiBooks
-### AI-Powered Modern Online Book Store & Digital Reading Platform
 
-<p align="center">
-A premium full-stack Online Book Store built with <strong>Next.js, TypeScript, Express.js, MongoDB, Clerk Authentication, Google Books API, Cloudinary, Gemini AI, and Tailwind CSS.</strong>
-</p>
+### Modern Full-Stack Online Book Store & Digital Reading Platform
+
+A full-stack online bookstore built with **Next.js, TypeScript, Express.js, MongoDB, Clerk Authentication, Google Books API, Cloudinary, and Tailwind CSS.**
+
+Designed to provide a seamless digital reading experience with secure authentication, category-based book discovery, responsive design, and an intuitive user interface.
 
 <p align="center">
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
-![Node.js](https://img.shields.io/badge/Node.js-Express-green?style=for-the-badge&logo=node.js)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?style=for-the-badge&logo=mongodb)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-38BDF8?style=for-the-badge&logo=tailwind-css)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)
+![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?style=for-the-badge&logo=mongodb)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4-06B6D4?style=for-the-badge&logo=tailwindcss)
 
 </p>
 
 <p align="center">
 
 <a href="https://lumibooks.vercel.app">
-<img src="https://img.shields.io/badge/🚀 Live Demo-Visit Website-success?style=for-the-badge">
+<img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Website-success?style=for-the-badge">
 </a>
 
 <a href="https://github.com/Shrushti2003">
-<img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github">
+<img src="https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github">
 </a>
 
 <a href="https://www.linkedin.com/in/shrushti-swarnakar/">
-<img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin">
+<img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin">
 </a>
 
 <a href="https://leetcode.com/u/Shrushti2003/">
-<img src="https://img.shields.io/badge/LeetCode-Profile-orange?style=for-the-badge&logo=leetcode">
+<img src="https://img.shields.io/badge/LeetCode-Profile-FFA116?style=for-the-badge&logo=leetcode">
 </a>
 
 </p>
@@ -48,144 +49,44 @@ A premium full-stack Online Book Store built with <strong>Next.js, TypeScript, E
 
 ---
 
-# 📖 Overview
+# 📖 About the Project
 
-LumiBooks is a modern AI-powered online bookstore that provides users with an immersive reading experience through an elegant UI, secure authentication, intelligent book discovery, interactive dashboards, digital reading capabilities, and scalable backend architecture.
+LumiBooks is a modern full-stack online bookstore that enables users to discover, explore, and read books through a clean, responsive, and user-friendly interface.
 
-The platform combines premium design with powerful technologies to create a seamless experience for discovering, managing, and reading books online.
+The application integrates the Google Books API to provide an extensive collection of books while offering secure authentication with Clerk and a scalable backend powered by Express.js and MongoDB. Users can browse books by category, search for titles, view detailed book information, and enjoy a smooth digital reading experience across desktop and mobile devices.
 
----
-
-# ✨ Key Highlights
-
-✅ Modern Premium UI
-
-✅ Full Stack Architecture
-
-✅ AI Powered Features
-
-✅ Secure Authentication
-
-✅ Responsive Design
-
-✅ Interactive Dashboard
-
-✅ Digital Book Reader
-
-✅ Book Search
-
-✅ Categories
-
-✅ Trending Books
-
-✅ Cloud Image Management
-
-✅ REST API Architecture
-
-✅ Clean Folder Structure
-
-✅ Production Ready
+This project was built to strengthen full-stack development skills, REST API design, secure authentication, database management, and responsive UI development while following modern web development best practices.
 
 ---
 
-# 📸 Application Screenshots
+# ✨ Features
 
-## 🏠 Landing Page
+### 📚 Book Features
 
-![Landing Page](./screenshots/landing-page.png)
+- Browse books across multiple categories
+- Search books by title
+- Explore featured and trending books
+- View detailed book information
+- Digital reading experience
+- Responsive book browsing
+- Clean and modern interface
 
----
+### 👤 User Features
 
-## 🏡 Home Page
+- Secure Authentication with Clerk
+- User Registration & Login
+- Protected Routes
+- Personalized Dashboard
+- Responsive Design
 
-![Home](./screenshots/home.png)
+### ⚙️ Backend Features
 
----
-
-## 📊 Dashboard
-
-![Dashboard](./screenshots/dashboard.png)
-
----
-
-## 📚 Browse Categories
-
-![Browse Categories](./screenshots/browse-categories.png)
-
----
-
-## 📖 Browse Categories Grid
-
-![Browse Categories Grid](./screenshots/browse-categories-grid.png)
-
----
-
-## 📕 Book Details
-
-![Book Details](./screenshots/book-details.png)
-
----
-
-## 📖 Reading Experience
-
-![Reading Page](./screenshots/reading%20page.png)
-
----
-
-## 🔥 Trending Books
-
-![Trending](./screenshots/trending.png)
-
----
-
-## 🔐 Sign In
-
-![Sign In](./screenshots/sign-in.png)
-
----
-
-## 📝 Sign Up
-
-![Sign Up](./screenshots/sign-up.png)
-
----
-
-# 🚀 Features
-
-### User Features
-
+- RESTful API Architecture
+- MongoDB Database Integration
+- Cloudinary Image Management
 - Secure Authentication
-- Book Discovery
-- Browse Categories
-- Trending Books
-- Responsive Layout
-- Reading Interface
-- Dashboard
-- Premium UI
-- Search Books
-- Book Details
-- Modern Navigation
-- Mobile Friendly
-
----
-
-### AI Features
-
-- AI Book Recommendations
-- AI Reading Assistance
-- Smart Book Discovery
-- Intelligent Suggestions
-
----
-
-### Admin Ready Architecture
-
-- REST APIs
-- Database Models
-- Secure Backend
-- Authentication Middleware
-- Validation
-- Error Handling
+- Scalable Folder Structure
+- Error Handling & Validation
 
 ---
 
@@ -193,21 +94,13 @@ The platform combines premium design with powerful technologies to create a seam
 
 ## Frontend
 
-- Next.js 16
-- React 19
+- Next.js
+- React
 - TypeScript
-- Tailwind CSS 4
-- Framer Motion
-- GSAP
-- Three.js
+- Tailwind CSS
+- React Query
 - React Hook Form
-- TanStack Query
-- Radix UI
-- Clerk Authentication
-- Zod
-- Recharts
-
----
+- Framer Motion
 
 ## Backend
 
@@ -215,36 +108,107 @@ The platform combines premium design with powerful technologies to create a seam
 - Express.js
 - MongoDB
 - Mongoose
-- JWT
-- Clerk Backend
-- Joi Validation
+- Clerk Authentication
 - Cloudinary
-- OpenAI / Gemini Integration
-- Redis
-- Multer
-- Helmet
-- Morgan
-- Compression
+
+## APIs & Services
+
+- Google Books API
+- Git & GitHub
+- Vercel
+- Postman
 
 ---
 
-# 🗂 Project Structure
+# 📷 Application Screenshots
 
-```
+## 🏠 Landing Page
+
+![Landing Page](./screenshots/landing-page.png)
+
+A modern landing page introducing LumiBooks with featured content and secure authentication options.
+
+---
+
+## 🏡 Home Page
+
+![Home](./screenshots/home.png)
+
+Browse featured books, trending collections, and discover your next favorite read.
+
+---
+
+## 📊 Dashboard
+
+![Dashboard](./screenshots/dashboard.png)
+
+A personalized dashboard providing quick access to books and account features.
+
+---
+
+## 📚 Browse Categories
+
+![Browse Categories](./screenshots/browse-categories.png)
+
+Explore books across multiple genres with an intuitive browsing experience.
+
+---
+
+## 📖 Browse Categories Grid
+
+![Browse Categories Grid](./screenshots/browse-categories-grid.png)
+
+Responsive grid layout designed for seamless navigation through large collections.
+
+---
+
+## 📘 Book Details
+
+![Book Details](./screenshots/book-details.png)
+
+View complete book information including author details, descriptions, ratings, and additional metadata.
+
+---
+
+## 📖 Reading Page
+
+![Reading Page](./screenshots/reading%20page.png)
+
+A distraction-free reading interface designed to provide a smooth digital reading experience.
+
+---
+
+## 🔥 Trending Books
+
+![Trending Books](./screenshots/trending.png)
+
+Stay updated with the latest popular and trending books available on the platform.
+
+---
+
+## 🔐 Sign In
+
+![Sign In](./screenshots/sign-in.png)
+
+Secure user authentication powered by Clerk.
+
+---
+
+## 📝 Sign Up
+
+![Sign Up](./screenshots/sign-up.png)
+
+Simple and secure registration process for new users.
+
+---
+
+# 📂 Project Structure
+
+```text
 LumiBooks
 │
-├── Frontend
-│   ├── app
-│   ├── components
-│   ├── hooks
-│   ├── lib
-│   ├── public
-│   ├── styles
-│   └── utils
-│
-├── Backend
-│   ├── src
-│   │
+├── backend
+│   ├── config
 │   ├── controllers
 │   ├── middleware
 │   ├── models
@@ -253,33 +217,91 @@ LumiBooks
 │   ├── utils
 │   └── server.js
 │
+├── frontend
+│   ├── app
+│   ├── components
+│   ├── hooks
+│   ├── lib
+│   ├── public
+│   ├── styles
+│   ├── utils
+│   └── package.json
+│
 ├── screenshots
-├── package.json
-└── README.md
+├── README.md
+└── package.json
 ```
 
 ---
 
-# ⚙️ Environment Variables
+# ⚙️ Installation
 
-Create a `.env` file.
+### Clone the Repository
 
+```bash
+git clone https://github.com/Shrushti2003/YOUR_REPOSITORY_NAME.git
 ```
-NODE_ENV=
 
+### Navigate to the Project Directory
+
+```bash
+cd YOUR_REPOSITORY_NAME
+```
+
+### Install Backend Dependencies
+
+```bash
+cd backend
+npm install
+```
+
+### Install Frontend Dependencies
+
+```bash
+cd ../frontend
+npm install
+```
+
+---
+
+# ▶️ Running the Project
+
+### Start the Backend Server
+
+```bash
+cd backend
+npm run dev
+```
+
+### Start the Frontend
+
+```bash
+cd frontend
+npm run dev
+```
+
+The application will be available at:
+
+**Frontend:** `http://localhost:3000`
+
+**Backend:** `http://localhost:5000`
+
+---
+
+# 🔑 Environment Variables
+
+Create a `.env` file inside the backend directory and configure the required environment variables.
+
+```env
 PORT=
-
-FRONTEND_URL=
 
 MONGODB_URI=
 
 JWT_SECRET=
 
-GOOGLE_BOOKS_API_KEY=
+CLERK_SECRET_KEY=
 
-GEMINI_API_KEY=
-
-REDIS_URL=
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 
 CLOUDINARY_CLOUD_NAME=
 
@@ -287,177 +309,76 @@ CLOUDINARY_API_KEY=
 
 CLOUDINARY_API_SECRET=
 
-NEXT_PUBLIC_API_URL=
+GOOGLE_BOOKS_API_KEY=
 
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-
-CLERK_SECRET_KEY=
+FRONTEND_URL=
 ```
+
+> **Note:** Use your own credentials and API keys before running the application.
 
 ---
 
-# 🚀 Installation
+# 🚧 Challenges Faced
 
-## Clone Repository
-
-```bash
-git clone https://github.com/Shrushti2003/YOUR_GITHUB_REPOSITORY_NAME.git
-```
-
----
-
-## Go to Project
-
-```bash
-cd YOUR_GITHUB_REPOSITORY_NAME
-```
+- Integrating the Google Books API while maintaining a consistent user experience.
+- Implementing secure authentication and protected routes using Clerk.
+- Managing asynchronous API requests and loading states efficiently.
+- Building reusable and maintainable React components.
+- Designing a responsive interface for desktop, tablet, and mobile devices.
+- Organizing a scalable full-stack project structure.
+- Handling backend validation, error handling, and API communication.
 
 ---
 
-## Install Dependencies
+# 📚 Key Learnings
 
-```bash
-npm install
-```
-
----
-
-## Start Development
-
-```bash
-npm run dev
-```
-
-Frontend
-
-```
-http://localhost:3000
-```
-
-Backend
-
-```
-http://localhost:5000
-```
+- Building scalable full-stack applications with Next.js and Express.js.
+- Designing RESTful APIs following industry best practices.
+- Managing authentication and route protection using Clerk.
+- Working with MongoDB and Mongoose for efficient database operations.
+- Integrating third-party APIs into production-ready applications.
+- Creating reusable UI components for better maintainability.
+- Improving responsive design and overall user experience.
+- Writing cleaner, modular, and maintainable code.
 
 ---
 
-# 📦 Build Project
+# 🚀 Future Improvements
 
-```
-npm run build
-```
-
----
-
-# 🔒 Security
-
-- JWT Authentication
-- Clerk Authentication
-- Secure Middleware
-- Environment Variables
-- Helmet Protection
-- Input Validation
-- API Validation
-- Error Handling
+- Wishlist and favorite books.
+- Reading progress tracking.
+- Book reviews and ratings.
+- Advanced search and filtering.
+- User profile customization.
+- Reading statistics dashboard.
+- Email notifications.
+- Offline reading support.
+- Dark mode.
+- Personalized book recommendations.
 
 ---
 
-# ⚡ Performance
+# 👩‍💻 Author
 
-- Next.js App Router
-- Optimized Rendering
-- Lazy Loading
-- Efficient API Calls
-- Responsive UI
-- Optimized Assets
-- Modern React Architecture
+**Shrushti Swarnakar**
 
----
+Full Stack Developer passionate about building modern, scalable, and user-centric web applications.
 
-# 🎯 Future Improvements
-
-- Book Reviews
-- Ratings
-- Wishlist
-- Reading Progress
-- Payment Integration
-- Subscription Plans
-- Notifications
-- Social Features
-- Offline Reading
-- Dark Mode Enhancements
-
----
-
-# 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the repository
-
-2. Create your feature branch
-
-```
-git checkout -b feature/NewFeature
-```
-
-3. Commit changes
-
-```
-git commit -m "Add New Feature"
-```
-
-4. Push
-
-```
-git push origin feature/NewFeature
-```
-
-5. Open a Pull Request
-
----
-
-# 👩‍💻 Developer
-
-## **Shrushti Swarnakar**
-
-Full Stack MERN Developer
-
-### GitHub
-
-https://github.com/Shrushti2003
-
-### LinkedIn
-
-https://www.linkedin.com/in/shrushti-swarnakar/
-
-### LeetCode
-
-https://leetcode.com/u/Shrushti2003/
+- 🌐 **Live Demo:** https://lumibooks.vercel.app
+- 💻 **GitHub:** https://github.com/Shrushti2003
+- 💼 **LinkedIn:** https://www.linkedin.com/in/shrushti-swarnakar/
+- 🧩 **LeetCode:** https://leetcode.com/u/Shrushti2003/
 
 ---
 
 # ⭐ Support
 
-If you found this project useful,
-
-please consider giving it a ⭐ on GitHub.
-
-It helps the project reach more developers.
-
----
-
-# 📄 License
-
-This project is intended for educational and portfolio purposes.
+If you found this project helpful or interesting, consider giving it a **⭐ Star** on GitHub. Your support helps showcase the project and is greatly appreciated.
 
 ---
 
 <div align="center">
 
-## ⭐ Thank You For Visiting LumiBooks ⭐
-
-Made with ❤️ by **Shrushti Swarnakar**
+### Thank you for visiting LumiBooks! 📚
 
 </div>
